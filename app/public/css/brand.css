@@ -1,0 +1,261 @@
+/* ============================================================
+   brand.css — BRAND TOKENS + SHARED CHROME
+   The single design system for all six Zenetic tools.
+
+   BRANDING SWAP POINT: every colour, font and radius lives in
+   :root below. Change it here, nowhere else. A page that reaches
+   for a literal hex is a page that has escaped the system.
+   ============================================================ */
+
+:root {
+  /* --- Chrome palette -------------------------------------- *
+     Deliberately monochromatic: one hue family carries the whole
+     interface so that product and status colour, which mean
+     something, never compete with chrome colour, which does not. */
+  --indigo:       #2D2A5E;   /* primary */
+  --indigo-deep:  #1B1940;   /* hover, pressed, deep ground */
+  --violet:       #5B4EA8;   /* lighter primary, accents on dark */
+  --violet-soft:  #EEEBF7;   /* tinted fills, chips, icon grounds */
+  --ink:          #211F2E;
+  --muted:        #6E6A80;
+  --page-bg:      #F6F5FA;
+  --card-bg:      #FFFFFF;
+  --card-border:  #E6E3F0;
+
+  /* --- Type ------------------------------------------------- */
+  --font-display: 'Sora', 'Trebuchet MS', sans-serif;
+  --font-body:    'Manrope', 'Helvetica Neue', Arial, sans-serif;
+
+  /* Nine steps, whole pixels. Every font-size on every page
+     resolves to one of these; a page that needs a size not on this
+     list needs a reason, not a new number.
+
+     Steps below --t-micro do not exist on purpose. 12px is the
+     floor for anything functional -- labels, table headers,
+     legends, chips. Adding a smaller token would launder a
+     legibility problem into a design token.
+
+     --t-body is the default, and dense data earns --t-meta rather
+     than the other way round. The tools this system came from had
+     drifted to 12.5px body text on their two densest screens, the
+     two surfaces a user reads for the whole session. */
+  --t-micro:    12px;  /* uppercase kickers, table headers, legends, chips */
+  --t-meta:     14px;  /* meta lines, hints, captions, buttons */
+  --t-body:     16px;  /* body copy, table cells, list rows -- the default */
+  --t-lead:     18px;  /* lead paragraph, ids */
+  --t-h3:       20px;  /* card titles */
+  --t-h2:       24px;  /* section headings */
+  --t-h1:       28px;  /* page titles */
+  --t-figure:   34px;  /* KPI numerals -- a figure, not a heading */
+  --t-display:  48px;  /* brand lock-up */
+
+  /* --- Shape + motion --------------------------------------- */
+  --radius-card: 18px;
+  --radius-chip: 12px;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* --- Elevation -------------------------------------------- */
+  --shadow-card: 0 1px 3px rgba(33, 31, 46, 0.05),
+                 0 12px 30px rgba(33, 31, 46, 0.05);
+}
+*, *::before, *::after { box-sizing: border-box; }
+
+/* The `hidden` attribute means hidden, and it has to win.
+
+   The browser implements `hidden` as `display: none` in the user-agent
+   stylesheet, which ANY author rule setting display outranks. So
+   `.zn-header__user { display: inline-flex }` quietly resurrects an
+   element the markup said to hide, and the page ships a chip with
+   nothing in it. This project hides things with that attribute in
+   every tool -- empty states, withheld rows, ungranted forms -- so it
+   is settled once, here, rather than per component. */
+[hidden] { display: none !important; }
+
+html, body { margin: 0; padding: 0; }
+
+body {
+  background: var(--page-bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--t-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--indigo); text-decoration: none; }
+a:hover { color: var(--indigo-deep); }
+
+:focus-visible { outline: 2px solid var(--violet); outline-offset: 3px; }
+
+/* --- Page shell --------------------------------------------- */
+.zn-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(1100px 620px at 50% -6%,
+              #EDEAF7 0%, #F2F0FA 44%, var(--page-bg) 80%);
+}
+/* --- Header -------------------------------------------------- */
+.zn-header {
+  padding: 32px 40px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.zn-header__logo { display: block; height: 34px; width: auto; }
+.zn-header__right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: var(--t-meta);
+  color: var(--muted);
+}
+.zn-header__user {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  color: var(--ink);
+}
+
+/* --- Footer -------------------------------------------------- */
+.zn-footer {
+  margin-top: auto;
+  padding: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--t-micro);
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  text-align: center;
+}
+.zn-footer__sep { opacity: 0.45; }
+
+/* --- Card ---------------------------------------------------- */
+.zn-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+
+/* --- Button --------------------------------------------------- */
+.zn-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: var(--t-meta);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--indigo);
+  color: #FFFFFF;
+  border: 1px solid var(--indigo);
+  cursor: pointer;
+  transition: background 180ms var(--ease-out), border-color 180ms var(--ease-out);
+}
+.zn-button:hover { background: var(--indigo-deep); border-color: var(--indigo-deep); color: #FFFFFF; }
+.zn-button[disabled] { opacity: 0.45; cursor: not-allowed; }
+.zn-button--ghost {
+  background: transparent;
+  color: var(--indigo);
+  border-color: rgba(45, 42, 94, 0.3);
+}
+.zn-button--ghost:hover { background: var(--violet-soft); color: var(--indigo-deep); }
+
+/* --- Product chip --------------------------------------------- *
+   The one place product colour appears as a standalone swatch. It
+   always carries the product NAME beside it -- see the contrast
+   note on --product-afininet. */
+.zn-product {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: var(--t-micro);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+.zn-product::before {
+  content: "";
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.zn-product--afininet { color: var(--product-afininet); }
+.zn-product--derolad  { color: var(--product-derolad); }
+/* Derolad is a triangle everywhere, not only on the map, so the
+   shape encoding is consistent wherever the pair appears. */
+.zn-product--derolad::before {
+  border-radius: 0;
+  width: 0; height: 0;
+  background: transparent;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 9px solid currentColor;
+}
+
+@media (max-width: 640px) {
+  .zn-header { padding: 20px 16px 0; flex-wrap: wrap; }
+  .zn-brand__org { font-size: var(--t-figure); }
+  .zn-brand__expansion { font-size: var(--t-body); }
+  .zn-message { padding: 36px 24px; }
+  .zn-message__title { font-size: var(--t-h2); }
+  .zn-footer { padding: 32px 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* --- Title band -------------------------------------------------- *
+   The band under the header that names a tool. Every tool page opens
+   with one, so moving between tools reads as moving within one
+   product. Full-bleed; the field tools are full-width apps, so its
+   text lines up with their 28px gutter. */
+.zn-topbar { padding: 18px 28px 14px; }
+.zn-titlebar {
+  background: linear-gradient(115deg, var(--indigo-deep) 0%, var(--indigo) 58%, var(--violet) 100%);
+  color: var(--card-bg);
+  padding: 28px;
+}
+.zn-titlebar__h1 {
+  margin: 0; font-family: var(--font-display); font-size: var(--t-figure);
+  font-weight: 600; letter-spacing: -.01em; line-height: 1.1;
+}
+.zn-titlebar__sub { margin: 8px 0 0; font-size: var(--t-meta); opacity: .85; max-width: 80ch; }
+@media (max-width: 640px) {
+  .zn-topbar, .zn-titlebar { padding-left: 16px; padding-right: 16px; }
+  .zn-titlebar__h1 { font-size: var(--t-h1); }
+}
+
+/* --- Visually hidden ------------------------------------------- *
+   Text for screen readers only: a column header with no visible
+   label, a select whose visible label is its first option. */
+.zn-visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* --- Status tokens (from the Hub; always shipped with a word) --- */
+:root {
+  --status-good:     #1B7A4B;
+  --status-warn:     #B5730B;
+  --status-serious:  #C2410C;
+  --status-critical: #B32020;
+  --product-derolad: #155E9C;
+  --product-afininet: #C2650A;
+}

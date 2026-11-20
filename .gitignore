@@ -1,0 +1,8 @@
+# Working notes: they name real prospects, so they never go into git or the container
+AzureAndElearningClaude.md
+node_modules/
+app/data/state.json
+.azure/
+.env*
+.DS_Store
+app/data/media/

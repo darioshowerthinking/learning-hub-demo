@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 196 36" role="img" aria-label="Zenetic Pharma">
+  <title>Zenetic Pharma</title>
+  <!-- Full lockup: mark + wordmark, sized for a 34px-tall header slot.
+       The wordmark is live text in the page's display face rather than
+       outlined paths, so it stays editable and weighs nothing. Sora is
+       loaded by every page that shows this; the fallback stack keeps it
+       legible if that request fails. -->
+  <rect width="36" height="36" rx="10" fill="#2D2A5E"/>
+  <path d="M11.2 11.8 H24.8 L11.2 24.2 H24.8"
+        fill="none" stroke="#FFFFFF" stroke-width="2.9"
+        stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="48" y="19.5"
+        font-family="Sora, 'Trebuchet MS', sans-serif"
+        font-size="16.5" font-weight="600" letter-spacing="-0.3"
+        fill="#211F2E">Zenetic</text>
+  <text x="48" y="31"
+        font-family="Manrope, 'Helvetica Neue', Arial, sans-serif"
+        font-size="9.5" font-weight="700" letter-spacing="2.6"
+        fill="#6E6A80">PHARMA</text>
+</svg>

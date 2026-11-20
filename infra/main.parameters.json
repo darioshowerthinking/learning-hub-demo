@@ -1,0 +1,23 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "environmentName": { "value": "${AZURE_ENV_NAME}" },
+    "location": { "value": "${AZURE_LOCATION}" },
+    "foundryAccountName": { "value": "${FOUNDRY_ACCOUNT_NAME=aif-zenetic-elearning}" },
+    "webImage": { "value": "${SERVICE_WEB_IMAGE_NAME=mcr.microsoft.com/dotnet/samples:aspnetapp}" },
+    "minReplicas": { "value": "${WEB_MIN_REPLICAS=0}" },
+    "demoAccessCode": { "value": "${DEMO_ACCESS_CODE}" },
+    "principalId": { "value": "${AZURE_PRINCIPAL_ID=}" },
+    "liveAvatarApiKey": { "value": "${LIVEAVATAR_API_KEY=}" },
+    "liveAvatarSandbox": { "value": "${LIVEAVATAR_SANDBOX=1}" },
+    "liveAvatarAvatarId": { "value": "${LIVEAVATAR_AVATAR_ID=}" },
+    "liveAvatarMaxSeconds": { "value": "${LIVEAVATAR_MAX_SECONDS=900}" },
+    "avatarProvider": { "value": "${AVATAR_PROVIDER=liveavatar}" },
+    "azureAvatarCharacter": { "value": "${AZURE_AVATAR_CHARACTER=}" },
+    "azureAvatarStyle": { "value": "${AZURE_AVATAR_STYLE=}" },
+    "azureAvatarVoiceEn": { "value": "${AZURE_AVATAR_VOICE_EN=}" },
+    "azureAvatarVoiceEs": { "value": "${AZURE_AVATAR_VOICE_ES=}" },
+    "azureAvatarPhotoModel": { "value": "${AZURE_AVATAR_PHOTO_MODEL=}" }
+  }
+}

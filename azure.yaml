@@ -1,0 +1,13 @@
+# Azure Developer CLI project: `azd up` provisions infra/ and deploys app/ to Container Apps.
+name: zenetic-learning-hub
+infra:
+  provider: bicep
+  path: infra
+services:
+  web:
+    project: ./app
+    language: js
+    host: containerapp
+    docker:
+      path: ./Dockerfile
+      remoteBuild: true   # built in Azure Container Registry: no local Docker needed
