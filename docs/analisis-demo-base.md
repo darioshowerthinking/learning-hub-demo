@@ -20,8 +20,8 @@ Demo de Michael Cain (`michaelshower/zenetic-learning-hub`, un commit del 20/11/
 | Área | Situación | Propuesta |
 |---|---|---|
 | Tests y CI | Ninguno | CI con control de nombres y sintaxis (hecho); tests de la API y de la IA |
-| Contrato | No existe | `contract/openapi.yaml` describiendo `app/server/app.js` |
-| Front | JavaScript sin framework, ficheros de hasta ~1.000 líneas | Front nuevo en `web/` (React + TS, sistema de diseño, accesibilidad) |
+| Coordinación interfaz/servidor | Sin contrato | Cambios de rutas acordados y anotados en `docs/traspaso-front-back.md` |
+| Interfaz | JavaScript sin framework, ficheros de hasta ~1.000 líneas | Rediseño y mejora sobre su interfaz (UX, accesibilidad, móvil), pantalla a pantalla |
 | Estado | Un único documento JSON para todo (lecturas y escrituras completas, en serie) | Suficiente para la demo; vigilar tamaño y concurrencia |
 | Seguridad | `POST /api/admin/reset` sin usuario ni perfil (solo código de acceso); vídeos en Blob de **lectura pública** | Restringir el reinicio; SAS de lectura con caducidad |
 | IA | Sin pruebas de ataque | `docs/auditoria-ia.md` |
