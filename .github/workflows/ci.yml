@@ -1,0 +1,39 @@
+# Comprobaciones en cada PR y en main: nombres reales, dependencias y sintaxis del servidor.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  scrub:
+    name: Sin nombres reales
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash scripts/scrub-check.sh
+
+  app:
+    name: app · dependencias y sintaxis
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+      - run: npm ci
+      - name: Sintaxis de todo el JavaScript del servidor y de la interfaz
+        run: find server public/js -name '*.js' -print0 | xargs -0 -n1 node --check
